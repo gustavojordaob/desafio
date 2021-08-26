@@ -41,9 +41,8 @@ public class TerminalResource {
 	}
 	
 	@PostMapping(produces = {
-			MediaType.APPLICATION_JSON_VALUE })
+			MediaType.APPLICATION_JSON_VALUE }, consumes = { "text/html; charset=utf-8" })
 	public ResponseEntity<Void> insert(@RequestBody @NotNull Terminal terminal){
-		
 		terminal = service.insert(terminal) ;
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
 				.path("/{URI}").buildAndExpand(terminal.getLogic()).toUri();

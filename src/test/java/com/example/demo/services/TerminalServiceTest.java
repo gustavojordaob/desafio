@@ -2,10 +2,12 @@ package com.example.demo.services;
 
 import com.example.demo.domain.Terminal;
 import com.example.demo.repository.TerminalRepository;
+import com.example.demo.services.exceptions.ObjectNotFoundException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
@@ -13,6 +15,8 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 
 @ExtendWith(SpringExtension.class)
 public class TerminalServiceTest {
@@ -76,6 +80,19 @@ public class TerminalServiceTest {
         verify(terminalRepository, times(1)).save(terminal);
     }
 
+    @Test
+    public void shouldGetObjectNotFoundException(){
+        //ARRANGE
+        Optional<Terminal> terminal = createTerminalOptional();
+
+        //ASSERT
+        assertThrows(ObjectNotFoundException.class,
+                () -> {
+                    terminalService.findByLogic(terminal.get().getLogic());
+                }
+        );
+    }
+
     private Optional<Terminal> createTerminalOptional() {
         return Optional.ofNullable(Terminal.builder()
                 .logic(44332211)
@@ -99,5 +116,6 @@ public class TerminalServiceTest {
                 .serial("123")
                 .version("1").build());
     }
+
 
 }
