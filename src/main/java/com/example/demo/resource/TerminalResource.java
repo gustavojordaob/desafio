@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.example.demo.domain.Terminal;
-import com.example.demo.services.TerminalService;
+import com.example.demo.services.TerminalServiceImpl;
 import com.sun.istack.NotNull;
 
 @RestController
@@ -25,7 +25,7 @@ import com.sun.istack.NotNull;
 public class TerminalResource {
 
 	@Autowired
-	private TerminalService service;
+	private TerminalServiceImpl service;
 	
 	@RequestMapping(method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<List<Terminal>> findAll()

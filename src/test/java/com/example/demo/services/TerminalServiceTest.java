@@ -3,11 +3,11 @@ package com.example.demo.services;
 import com.example.demo.domain.Terminal;
 import com.example.demo.repository.TerminalRepository;
 import com.example.demo.services.exceptions.ObjectNotFoundException;
+import com.example.demo.services.interfaces.TerminalService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Collections;
@@ -22,7 +22,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class TerminalServiceTest {
 
     @InjectMocks
-    private TerminalService terminalService;
+    private TerminalService terminalService = new TerminalServiceImpl();
 
     @Mock
     private TerminalRepository terminalRepository;

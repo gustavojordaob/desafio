@@ -3,6 +3,7 @@ package com.example.demo.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.demo.services.interfaces.TerminalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +12,7 @@ import com.example.demo.repository.TerminalRepository;
 import com.example.demo.services.exceptions.ObjectNotFoundException;
 
 @Service
-public class TerminalService {
+public class TerminalServiceImpl implements TerminalService {
 
 	@Autowired
 	private TerminalRepository repo;
