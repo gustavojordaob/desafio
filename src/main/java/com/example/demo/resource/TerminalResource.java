@@ -21,7 +21,7 @@ import com.example.demo.services.TerminalService;
 import com.sun.istack.NotNull;
 
 @RestController
-@RequestMapping("/terminals")
+@RequestMapping("v1/terminal")
 public class TerminalResource {
 
 	@Autowired
@@ -37,8 +37,7 @@ public class TerminalResource {
 	@GetMapping(value = {"/{logic}"}, produces = { MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Terminal> findByLogic(@PathVariable("logic") Integer logic){
 		Terminal terminal = service.findByLogic(logic);
-		return ResponseEntity.ok(terminal); 
-		
+		return ResponseEntity.ok(terminal);
 	}
 	
 	@PostMapping(produces = {
@@ -55,9 +54,7 @@ public class TerminalResource {
 			MediaType.APPLICATION_JSON_VALUE })
 	public ResponseEntity<Void> update(@PathVariable("logic") Integer logic, @RequestBody @NotNull Terminal terminal){
 		terminal.setLogic(logic);
-		terminal = service.update(terminal);
+		service.update(terminal);
 		return ResponseEntity.noContent().build();
 	}
-	
-	
 }
